@@ -1,0 +1,19 @@
+{
+  "author": "Nati Namvong",
+  "name": "node-ng",
+  "version": "0.0.1",
+  "homepage": "n9ti.com",
+  "licenses": {
+    "type": "MIT",
+    "url": "https://raw.github.com/joshdmiller/ng-boilerplate/master/LICENSE"
+  },
+  "bugs": "https://github.com/flyingnati/node-ng/issues",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:flyingnati/node-ng.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "express": "3.x"
+  }
+}
