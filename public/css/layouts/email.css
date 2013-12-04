@@ -21,7 +21,7 @@ a {
 #nav {
     margin-left:-150px; /* "left col (nav + list)" width */
     width:150px;
-    background: rgb(37, 42, 58);
+    background: #5AA343;/* rgb(37, 42, 58); */
     text-align: center;
     padding: 2em 0;
 }
@@ -135,6 +135,9 @@ a {
 }
 
 /* Email Content Styles */
+.email-content-body{
+    font-size: 11px;
+}
 .email-content-header, .email-content-body, .email-content-footer {
     padding: 1em 2em;
 }
