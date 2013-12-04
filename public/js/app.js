@@ -7,6 +7,15 @@ app.controller('ReserveController', ['$scope', function($scope) {
 	$scope.hideMainView = true;
 	$scope.hideCustomerView = true;
 
+	$scope.customerData = {
+		name: "เนติ",
+		sname: "นามวงศ์",
+		address: "1522 พิบูลสรงคราม บางชื่อ กรุงเทพ 10800",
+		tel: "087-688-7910",
+		contactDate: '12 ธันวาคม 2556',
+		contactOption: '-'
+	}
+
 	$scope.unitData = {
 		unitNo: null,
 		land: null,	
@@ -101,7 +110,11 @@ app.controller('ReserveController', ['$scope', function($scope) {
 		var1=(b*crate);
 		var2=1-(1/Math.pow((1+crate),cperiod));
 		return var1/var2;
-	}
+	};
+
+	$scope.print = function() { 
+		window.print();
+	};
 	
 
 

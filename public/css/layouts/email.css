@@ -136,7 +136,7 @@ a {
 
 /* Email Content Styles */
 .email-content-body{
-    font-size: 11px;
+    font-size: 9px;
 }
 .email-content-header, .email-content-body, .email-content-footer {
     padding: 1em 2em;

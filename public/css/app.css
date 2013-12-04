@@ -38,13 +38,24 @@ input.ng-dirty{
 
 /**/
 
+table{
+	border: 0px solid #333;
+}
 
+.img-desc{
+	font-size: 14px;
+	margin-bottom: 20px;
+}
+.img-desc2{
+	font-size: 11px;
+	margin-top: -15px;
+}
 
 ol{
   border:1px solid;
   padding:10px;
   font-size: 8px;
-  width: 50%;
+  width: 90%;
 }
 li{
   margin-left: 20px;
@@ -68,7 +79,7 @@ li{
 	color: #FFF;
 }
 .bigtitle{
-	font-size: 14px;
+	font-size: 12px;
 }
 .maintitle{
 	font-weight:bold;
@@ -96,7 +107,7 @@ li{
 	font-weight:bold;
 }
 .headertext{
-	font-size: 14px;
+	font-size: 12px;
 	text-decoration: underline;
 }
 
@@ -133,6 +144,34 @@ li{
 	width: auto;
 }
 
+
+#print-title{
+	margin-left: 20px;
+	margin-top: 10px;
+	color: #FFF;
+	float: left;
+	text-align: left;
+	font-size: 11px;
+	font-weight: bold;
+	width: 30%;
+}
+
+#print-number{
+	margin-right: 20px;
+	margin-top: 10px;
+	color: #FFF;
+	float: right;
+	text-align: right;
+	font-size: 12px;
+	font-weight: bold;
+	width: 30%;
+}
+
+#print-number span{
+	background-color: #FFF;
+	width: 70px !important;
+	display: inline-block;
+}
 
 
 @media print { 
