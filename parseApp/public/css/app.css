@@ -1,0 +1,427 @@
+/* Overwrite */
+
+.content{
+	font-size: 9px;
+	padding: 0px;
+	background-color: #FFF;
+}
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 150px;
+    margin-left: -150px;
+    background: #5AA343;/*#5AA343;rgba(255,255,255,0)*/
+    color: #666;
+    border-right-color: rgb(221, 221, 221);
+	border-right-style: solid;
+	border-right-width: 1px;
+}
+#layout {
+	padding-left: 150px;
+	position: relative;
+}
+
+.header {
+margin: 30px 0;
+text-align: center;
+}
+.pure-button-error {
+    background: rgb(202, 60, 60); /* this is a maroon */
+    color: #FFF;
+}
+
+.email-content-header{
+border-bottom-color: rgb(221, 221, 221);
+border-bottom-style: solid;
+border-bottom-width: 1px;
+color: rgb(51, 51, 51);
+
+font-family: FreeSans, Arimo, 'Droid Sans', Helvetica, Arial, sans-serif;
+font-size: 16px;
+
+letter-spacing: normal;
+padding-bottom: 16px;
+padding-left: 32px;
+padding-right: 32px;
+padding-top: 16px;
+text-rendering: optimizespeed;
+width: 100%;
+word-spacing: 0px;
+zoom: 1;
+}
+.email-content-title{
+color: rgb(51, 51, 51);
+display: block;
+font-family: sans-serif;
+font-size: 32px;
+font-weight: bold;
+height: 44px;
+letter-spacing: normal;
+margin-bottom: 0px;
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 16px;
+width: 473px;
+word-spacing: 0px;
+zoom: 1;
+}
+
+.email-content-subtitle{
+color: rgb(51, 51, 51);
+display: block;
+font-family: sans-serif;
+font-size: 16px;
+font-weight: normal;
+height: 22px;
+letter-spacing: normal;
+margin-bottom: 0px;
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 0px;
+width: 473px;
+word-spacing: 0px;
+zoom: 1;
+}
+.email-content-controls{
+	
+	color: rgb(51, 51, 51);
+display: block;
+font-family: sans-serif;
+font-size: 14px;
+height: 50px;
+letter-spacing: normal;
+margin-top: 32px;
+text-align: right;
+text-rendering: auto;
+vertical-align: top;
+word-spacing: 0px;
+zoom: 1;
+
+float: right;
+}
+
+
+.dropdown-menu {
+position: absolute;
+top: 100%;
+left: 0;
+z-index: 1000;
+display: none;
+float: left;
+min-width: 160px;
+padding: 15px 15px;
+margin: 2px 0 0;
+list-style: none;
+background-color: #fff;
+border: 1px solid #ccc;
+border: 1px solid rgba(0,0,0,0.2);
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+-webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+-moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+-webkit-background-clip: padding-box;
+-moz-background-clip: padding;
+background-clip: padding-box;
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+font-size: 14px;
+line-height: 20px;
+color: #333;
+}
+
+
+#login{
+	margin: 200px; 0;
+	margin-top: 100px;
+}
+
+
+#print-content{
+	padding: 20px;
+}
+
+.pure-g {
+	letter-spacing: inherit;
+	font-family: FreeSans,Arimo,"Droid Sans",Helvetica,Arial,sans-serif;
+} 
+
+.white{
+	color: #FFF;
+}
+
+
+fieldset{
+	vertical-align: middle;
+}
+
+#search{
+	height: 30px;
+	width: 30px;
+	vertical-align: middle;
+	display: inline-block;
+	line-height: 30px;
+	margin-left: -15px;
+}
+#search:hover{
+	font-size: 18px;
+}
+
+input.ng-invalid {
+  border: 1px solid red;
+}
+
+input.ng-pristine{
+  border: 1px solid red;
+}
+input.ng-dirty{
+  border: 1px solid red;
+}
+
+
+/**/
+
+table{
+	border: 0px solid #333;
+}
+
+.img-desc{
+	font-size: 14px;
+	margin-bottom: 20px;
+}
+.img-desc2{
+	font-size: 11px;
+	margin-top: -15px;
+}
+
+ol{
+  border:1px solid;
+  padding:10px;
+  font-size: 8px;
+  width: 90%;
+}
+li{
+  margin-left: 20px;
+  margin-right:20px;
+}
+#header{
+	display: block;
+	width: 100%;
+	background-color: #5AA343;
+	text-align: center;
+	height: 50px;
+	padding-top: 3px;
+}
+#footer{
+	display: block;
+	width: 100%;
+	background-color: rgb(88,88,88);
+	text-align: center;
+	height: 50px;
+	padding-top: 3px;
+	color: #FFF;
+}
+.bigtitle{
+	font-size: 12px;
+}
+.maintitle{
+	font-weight:bold;
+	width: 10%;
+}
+.title{
+	padding-left: 30px;
+	font-weight:bold;
+}
+.subtitle{
+	padding-left: 50px;
+}
+.pricetitle{
+	text-align: right;
+	font-weight:bold;
+	width: 20%;
+}
+.price{
+	text-align: right;
+	width: 20%;
+}
+.unit{
+	text-align: right;
+	width: 10%;
+	font-weight:bold;
+}
+.headertext{
+	font-size: 12px;
+	text-decoration: underline;
+}
+
+
+#right-panel{
+	position: absolute;
+	right: 8px;
+	top: 80px;
+	text-align: left;
+	width: 44%;
+}
+
+#plan{
+	position: absolute;
+	right: 8px;
+	bottom: 40px;
+	text-align: right;
+	width: 44%;
+}
+#kc-logo{
+	float: left;
+	margin-left: 20px;
+}
+#project{
+	float: left;
+	text-align: left;
+	margin-left: 20px;
+	width: 80%;
+}
+
+
+.height46{
+	height: 46px !important;
+	width: auto;
+}
+
+
+#print-title{
+	margin-left: 20px;
+	margin-top: 10px;
+	color: #FFF;
+	float: left;
+	text-align: left;
+	font-size: 11px;
+	font-weight: bold;
+	width: 30%;
+}
+
+#print-number{
+	margin-right: 20px;
+	margin-top: 10px;
+	color: #FFF;
+	float: right;
+	text-align: right;
+	font-size: 12px;
+	font-weight: bold;
+	width: 30%;
+}
+
+#print-number span{
+	background-color: #FFF;
+	width: 70px !important;
+	display: inline-block;
+}
+
+#logout-btn{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	background-color: #5AA343;
+	width: 149px;
+	color: #FFF;
+	border-radius: 0px;
+}
+
+.reserved{
+	border-right: 10px solid #F00; 
+	border-left: 10px solid #F00; 
+	border-bottom: 1px solid #F00; 
+	border-top: 1px solid #F00; 
+}
+.reserved h1{
+	color: #F00;
+	font-weight: normal;
+}
+.reserved p{
+
+}
+}
+.reserved a{
+
+}
+.big{
+	font-size: 14px;
+	font-weight: normal;
+	margin: 60px;
+	color: #444;
+}
+table.unit{
+	width: 400px;
+	border: 1px;
+	text-align: center;
+
+
+-webkit-border-radius: 	3px;
+-moz-border-radius: 	3px;
+border-radius: 			3px;
+-webkit-box-shadow: 	0 0px 4px rgba(0,0,0,0.2);
+-moz-box-shadow: 		0 0px 4px rgba(0,0,0,0.2);
+box-shadow: 			0 0px 4px rgba(0,0,0,0.2);
+}
+table.unit tr{
+	border-bottom: 1px solid rgba(110,110,110,0.1); 
+	height: 30px;
+}
+table.unit tr:hover{
+	background-color: rgba(222,222,222,0.1);
+}
+th{
+	color: #666;
+}
+.reload{
+	padding: 5px 10px;
+}
+.fa-search:hover{
+	font-size: 16px;
+}
+
+
+#logo-home:hover{
+	width: 132px;
+	cursor: pointer;
+}
+
+
+
+
+input.ng-invalid.ng-dirty {
+border-color: #FA787E;
+}
+
+input.ng-valid.ng-dirty {
+}
+
+
+
+
+
+
+@-webkit-keyframes rotating {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.rotating {
+    -webkit-animation: rotating 2s linear infinite;
+}
+
+
+
+
+
+@media print { 
+ /* All your print styles go here */
+ #nav, .email-content-header, .sidebar { display: none !important; } 
+ #layout{
+ 	padding-left:0px;
+ }
+}

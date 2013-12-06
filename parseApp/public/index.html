@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example that shows off a blog page with a list of posts.">
+
+    <title>Plern Pilin</title>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://mandrillapp.com/api/docs/js/mandrill.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="http://www.parsecdn.com/js/parse-1.2.13.min.js"></script>
+
+    <script src="//mgcrea.github.com/angular-strap/js/angular-strap.js"></script>
+    <script src="/js/bootstrap-datepicker.js"></script>
+    <script src="http://code.angularjs.org/1.0.8/i18n/angular-locale_th-th.js"></script>
+
+    <script src="/js/app.js"></script>
+    
+
+
+
+
+
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
+
+    <link rel="stylesheet" href="/css/pure-min.css">
+    <link rel="stylesheet" href="css/layouts/blog.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+
+
+
+
+</head>
+<body ng-controller="ReserveController">
+
+
+
+
+
+
+
+
+<div id="login" ng-hide='hideLoginView' >
+    <form class="pure-form pure-form-stacked" >
+        <fieldset>
+            <legend><img ng-src="img/logoc.png" width="130px"></legend>
+            
+            <br>
+            <label for="username">Username</label>
+            <input id="username" type="text" placeholder="Username" ng-model="login.user">
+
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Password" ng-model="login.password">
+            <br/>
+            <button type="submit" class="pure-button pure-button-primary" ng-click='login()'>Sign in</button>
+        </fieldset>
+    </form>
+</div>
+
+
+
+<div class="pure-g-r" id="layout" ng-hide='hideLayoutView'>
+    <div class="sidebar pure-u">
+        <header class="header">
+            <nav class="nav">
+                <img id='logo-home' ng-src="img/logo.png" width="130px" ng-click='hideMainView=true;unitFeed()'>
+                <br/>
+                <br/>
+                <form class="pure-form pure-g">
+                    <fieldset>
+                        <input type="text" ng-model="inputUnitNo" ng-keydown="keyDown($event)" class="pure-u-1-2" placeholder="Unit No.">&nbsp;&nbsp;&nbsp;
+                        <div id="search" ng-click="search()">
+                            <i class="fa fa-search white"></i>
+                        </div>
+                        <!--button class="pure-button pure-u-1-2"><i class="fa fa-search"></i></button-->
+                    </fieldset>
+                </form>
+
+                <br><br><br>
+                <button class="pure-button pure-button-primary" ng-click='logout()' id='logout-btn'><i class="fa fa-power-off"></i> ออกจากระบบ</button>
+
+                
+            </nav>
+        </header>
+    </div>
+
+    <div class="pure-u-1">
+
+        <div class="content big" ng-show="hideMainView">
+        
+            <h1>
+                Summery
+                <button class='pure-button pure-button-primary reload' ng-click="unitFeed()"><i class="fa fa-refresh" ng-class="rotating"></i></button>
+            </h1>
+
+
+            <table class="unit"  ng-init="predicate = 'unitNo'; reverse=false">
+                <tr>
+                    <th><a href="" ng-click="predicate = 'unitNo'; reverse=!reverse">ยูนิต</a></th>
+                    <th><a href="" ng-click="predicate = 'name'; reverse=!reverse">ลูกค้า</a></th>
+                    <th><a href="" ng-click="predicate = 'tel'; reverse=!reverse">เบอร์โทร</a></th>
+                    <th><a href="" ng-click="predicate = 'reserved'; reverse=!reverse">สถานะ</a></th>
+                    <th width="60px"><i class="fa fa-search white"></th>
+                </tr>
+                <tr ng-repeat="unit in units | orderBy:predicate:reverse">
+                    <td>{{unit.unitNo}}</td>
+                    <td>{{unit.name}}</td>
+                    <td>{{unit.tel}}</td>
+                    <td>
+                        <span ng-hide='unit.reserved' style="color:#5AA343;">ว่าง</span>
+                        <span ng-show='unit.reserved' style="color:#F00;">จองแล้ว</span>
+                    </td>
+                    <td>
+                        <i class="fa fa-search" ng-click="go(unit.unitNo)"></i>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div class="content" ng-hide="hideMainView">
+            
+            <div class="email-content-header pure-g" ng-show='hidePreviewView'> 
+                <form class="pure-form pure-u-1-1" name="customer">
+                    <fieldset>
+
+                        <legend><h1>ยูนิตเลขที่ {{unitData.unitNo}}</h1>ข้อมูลลูกค้า</legend>
+                        
+                        <label for="address">ชื่อ - นามสกุล :</label><br>
+                        <input id="name" type="text" placeholder="ชื่อ" ng-model="unitData.name" vl-name required>
+
+                        <input id="sname" type="text" placeholder="นามสกุล" ng-model="unitData.sname" vl-name required>
+                        
+                        <br/><br/>
+
+                        <label for="address">ที่อยู่ :</label><br>
+                        <textarea ng-model="unitData.address" cols="32" rows="4"></textarea>
+
+
+                        <br/><br/>
+
+                        <label for="address">เบอร์โทรศัพท์ :</label><br>
+                        <input id="tel" type="text" placeholder="เบอร์โทรศัพท์" ng-model="unitData.tel" vl-phone required>
+                        
+                        <br/><br/>
+
+                        <label for="address">นัดทำสัญญา :</label><br>
+                        <div class="control-group input-append">
+                            <input type="text" ng-model="unitData.contactDate" placeholder="วันที่" data-date-format="dd M yyyy" bs-datepicker>
+                            <button type="button" class="btn" data-toggle="datepicker"><i class="fa fa-calendar"></i></button>
+                        </div>
+
+
+
+                        <br/><br/>
+
+                        <label for="address">เงื่อนไขพิเศษ :</label><br>
+                        <textarea ng-model="unitData.contactOption" cols="32" rows="4"></textarea>
+                       
+
+                        <br/><br/>
+                        <button class="pure-button pure-button-secondary" ng-click='hidePreviewView = false'>ย้อนกลับ</button>
+                        <button type="submit" class="pure-button pure-button-primary" ng-click='saveReserveData(customer)'>บันทึกข้อมูล</button>
+                    
+
+                        <div ng-show='unitData.reserved'>
+                            <br/><br/><br/><br/><br/><br/>
+                            <legend>ยกเลิกการจอง</legend>
+                            <label>กรุณาใส่ Password</label><br>
+                            <input type="password" placeholder="Password" ng-model="CancelPassword">
+
+                            <br/><br/>
+                            <button class="pure-button pure-button-error" ng-click='cancelReserveData()'>ยกเลิกการจอง</button>
+                        </div>
+                        
+                    </fieldset>
+                </form>
+
+                <br><br>
+                <form class="pure-form pure-u-1-1">
+                    <fieldset>
+                        
+
+                    </fieldset>
+                </form>
+
+                
+            </div>
+
+            <!--></-->
+
+            <div class="email-content-header pure-g" ng-class="isReserved" ng-hide='hidePreviewView'>
+                <div class="pure-u-1-2">
+                    <h1 class="email-content-title">ยูนิตเลขที่ {{unitData.unitNo}} {{reservedStatus}}</h1>
+                    <p class="email-content-subtitle">
+                        ที่ดิน  <a>{{unitData.land | number:2}}</a> ตารางวา ราคา <a>{{unitData.price | number:2}}</a> บาท
+                    </p>
+                </div>
+
+                <div class="pure-u-1-2 email-content-controls">
+                    <button class="pure-button secondary-button" ng-click='reserve()'>{{reservedButton}} <i class="fa fa-shopping-cart"></i></button>
+                    <button class="pure-button secondary-button" ng-click="print()">พิมพ์ใบเสนอราคา <i class="fa fa-print"></i></button>
+                </div>
+            </div>
+
+
+
+
+
+            <!--></-->
+
+
+
+
+
+
+            <div id="print-content" ng-hide="hidePreviewView">
+
+                <div id='header'>
+                    <div id='print-title'>
+                    ใบยืนยันการจองซื้อ / ใบเสร็จรับเงิน
+                    <br/>
+                    โครงการบ้านเพลินไพลิน แปลงยาว
+                    </div>
+                    <img ng-src="img/logo.png" height='46px' class='height46'>
+                    <div id="print-number">
+                        เลขที่&nbsp;&nbsp;<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    </div>
+                </div>
+
+                <br/>
+
+
+                <table width="100%">
+                    <tr>
+                        <td width="50%">
+                            
+                        
+
+                            <table  width="95%">
+                                <tr>
+                                    <td class='bigtitle'><b>ผู้จองชื่อ</b> {{unitData.name + "&nbsp;&nbsp;"+ unitData.sname}}</td>
+                                    <td class='unit bigtitle' colspan="2">เลขที่ยูนิต&nbsp;&nbsp;&nbsp;{{unitData.unitNo | number:0}}</td>
+                                </tr>
+                                <tr>
+                                    <td class='title' colspan="3"><b>ที่อยู่ผู้จอง:</b> {{unitData.address}}</td>
+                                </tr>
+                                <tr>
+                                    <td class='title'><b>เบอร์โทรศัพท์:</b> {{unitData.tel}}</td>
+                                    <td class='price' colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    
+                                    <td class='title' align="right">พื้นที่ใช้สอย</td>
+                                    <td class='price' align="right">{{unitData.house | number:2}}</td>
+                                    <td class='unit'> ตารางเมตร</td>
+                                    
+                                </tr>
+                                <tr>
+                                    
+                                    <td class='title' align="right">พื้นที่ดิน</td>
+                                    <td class='price'>{{unitData.land | number:2}} </td>
+                                    <td class='unit'>ตารางวา</td>
+                                </tr>
+                                <tr>
+                                    
+                                    <td class='title' align="right">ราคา</td>
+                                    <td class='price'>{{unitData.price | number:0}}.00 </td>
+                                    <td class='unit'>บาท</td>
+                                </tr>
+                            </table>
+
+
+                            <br/>
+
+
+                            <b class='headertext'>เงื่อนไขการชำระ</b>
+                            <table width="95%">
+                                <tr>
+                                    <td class='title'>1. เงินจอง</td>
+                                    <td class='price'>{{unitData.reservePayment | number:0}}.00</td>
+                                    <td class='unit'>บาท</td>
+                                </tr>
+                                <tr>
+                                    <td class='title'>2. ทำสัญญา</td>
+                                    <td class='price'>{{unitData.contactPayment | number:0}}.00</td>
+                                    <td class='unit'>บาท</td>
+                                </tr>
+                                <tr>
+                                    <td class='title'>3. งวดผ่อนดาวน์ 5 งวด อัตรา 4% ของมูลค่าขาย</td>
+                                    <td class='price'>{{unitData.downPayment | number:0}}.00</td>
+                                    <td class='unit'>บาท</td>
+                                </tr>
+                                <tr>
+                                    <td class='title'>4. ผ่อนดาวน์ (ต่องวด)</td>
+                                    <td class='price'>{{unitData.downPaymentPerMonth | number:0}}.00</td>
+                                    <td class='unit'>บาท</td>
+                                </tr>
+                                <tr>
+                                    <td class='title'>5. ยอดผ่อนกับธนาคาร</td>
+                                    <td class='price'> {{unitData.bankPayment | number:0}}.00</td>
+                                    <td class='unit'>บาท</td>
+                                </tr>
+                                <tr>
+                                    <td class='subtitle'>5.1 ผ่อนธนาคาร 20 ปี อัตราดอกเบี้ย 7%</td>
+                                    <td class='price'> {{unitData.bankPaymentPerMonth20 | number:0}}.00</td>
+                                    <td class='unit'>บาท</td>
+                                </tr>
+                                <tr>
+                                    <td class='subtitle'>5.2 ผ่อนธนาคาร 25 ปี อัตราดอกเบี้ย 7%</td>
+                                    <td class='price'> {{unitData.bankPaymentPerMonth25 | number:0}}.00</td>
+                                    <td class='unit'>บาท</td>
+                                </tr>
+                                <tr>
+                                    <td class='subtitle'>5.3 ผ่อนธนาคาร 30 ปี อัตราดอกเบี้ย 7%</td>
+                                    <td class='price'> {{unitData.bankPaymentPerMonth30 | number:0}}.00</td>
+                                    <td class='unit'>บาท</td>
+                                </tr>
+                            </table>
+                            
+                            <br/>
+
+
+                            <table width="95%">
+                                <tr>
+                                    <td colspan="3"><b>วันที่นัดทำสัญญา:</b> {{unitData.contactDate | date:'dd MMMM yyyy'}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><b>เงื่อนไขพิเศษ:</b> {{unitData.contactOption}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td align="center">ลงชื่อ ___________________</td>
+                                    <td align="center">ลงชื่อ ___________________</td>
+                                    <td align="center">ลงชื่อ ___________________</td>
+                                </tr>
+                                <tr>
+                                    <td align="center">(เจ้าหน้าที่ควบคุม)</td>
+                                    <td align="center">(เจ้าหน้าที่ควบคุม)</td>
+                                    <td align="center">(ผู้จองซื้อ)</td>
+                                </tr>
+                            </table>
+                            
+                            <br/>
+                            
+                            
+                            <b>หมายเหตุ</b>
+                            <ol>
+                                <li>เอกสารจองซื้อนี้เป็นส่วนหนึ่งของสัญญาจองซื้อ/สัญญาจะซื้อจะขาย ซึ่งจะสมบูรณ์เมื่อบริษัท ได้รับชำระเงินมัดจำครบถ้วนแล้ว</li>
+                                <li>กรณีไม่มาทำสัญญาตามวันที่กำหนด ให้ถือว่าผู้จองซื้อสละสิทธิ์การจองและไม่สามารถได้รับเงินคืน</li>
+                                <li>รายละเอียดเพิ่มเติมรวมทั้งราคาสุทธิ จะระบุในสัญญาจองซื้อ/สัญญาจะซื้อจะขาย</li>
+                                <li>อัตราดอกเบี้ยอาจเปลี่ยนแปลงได้ตามที่สถาบันการเงินกำหนด และวงเงินกู้ขึ้นอยู่กับคุณสมบัติของผู้กู้ โดยสถาบันการเงินเป็นผู้พิจารณาตามเกณฑ์</li>
+                            </ol>
+
+
+
+
+
+
+                        </td>
+                        <td width="50%">
+                            <table width="100%">
+                                <tr>
+                                    <td rowspan="2" width="60%" align="left">
+                                        <div class="img-desc">ผังโครงการ</div>
+                                        <div class="img-desc2">ตำแหน่งและขนาดพื้นที่ดิน ที่ระบุในเอกสารนี้อาจปรับเปลี่ยนได้ตามความเหมาะสมโดยไม่กระทบต่อการใช้งานและพักอาศัย</div>
+                                        <img ng-src="img/mark/{{unitData.unitNo | number:0}}.jpg" width="90%">
+                                    </td>
+                                    <td  width="40%" align="center">
+                                        <div class="img-desc">แปลนบ้านโดยสังเขป</div>
+                                        <img ng-src="img/floorplan/{{unitData.plan | lowercase}}.png" width="120px">
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <td  align="center">
+                                        <br/><br/>
+                                        <div class="img-desc">ผังโดยสังเขป</div>
+                                        <img ng-src="img/plan/h{{unitData.unitNo | number:0}}.jpg">
+                                    </td>
+                                </tr>
+                            </table>
+
+
+
+                        </td>
+                    </tr>
+                </table>
+
+
+
+                <br>
+                <div id="footer">
+                    <img ng-src="img/kc.png" height="46px" class='height46' id='kc-logo'>
+                    <div id='project'>
+                    โครงการอาคารชุด บ้านเพลินไพลิน : เจ้าของโครงการ และดำเนินโครงการโดยบริษัท เค.ซี.แอนด์ดี จำกัด เลขที่ 20หมู่ที่ 2ถนนสุวรรณศร ตำบลประจันตคาม อำเภอประจันตคาม จังหวัดปราจีนบุรี 25130 | ปัจจุบันได้รับใบอนุญาตก่อสร้างบ้านและเริ่มปรับที่ดินแล้ว ทั้งนี้คาดว่าจะเริ่มก่อสร้างได้ช่วงต้นปี2557 คาดว่าจะแล้วเสร็จปลายปี 2557 | หมายเหตุ : ขอสงวนสิทธิ์ในการเปลี่ยนแปลงข้อมูลโดยไม่ต้องแจ้งล่วงหน้า
+                    </div>
+                </div>
+
+            </div>
+
+        <!--></-->
+            
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

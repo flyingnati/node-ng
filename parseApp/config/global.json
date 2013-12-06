@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Plern Pilin": {
+            "applicationId": "NwesCh1AeZV7DOWr0hI6vKPEgHCKNX6AqJmTH0C7", 
+            "masterKey": "TouahuSKy36duzR498qpEEeQe5cpPQpZ7J8ETM3Z"
+        }, 
+        "_default": {
+            "link": "Plern Pilin"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.13"
+    }
+}
